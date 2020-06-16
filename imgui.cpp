@@ -10564,7 +10564,10 @@ void ImGui::ShowMetricsWindow(bool* p_open)
                 ImGui::GetForegroundDrawList()->AddRect(table->OuterRect.Min, table->OuterRect.Max, IM_COL32(255, 255, 0, 255));
             if (open)
             {
-                ImGui::BulletText("OuterWidth: %.1f, InnerWidth: %.1f%s, ColumnsWidth: %.1f, AutoFitWidth: %.1f", table->OuterRect.GetWidth(), table->InnerWidth, table->InnerWidth == 0.0f ? " (auto)" : "", table->ColumnsTotalWidth, table->ColumnsAutoFitWidth);
+                ImGui::BulletText("OuterWidth: %.1f, InnerWidth: %.1f%s", table->OuterRect.GetWidth(), table->InnerWidth, table->InnerWidth == 0.0f ? " (auto)" : "");
+                ImGui::BulletText("ColumnsWidth: %.1f, AutoFitWidth: %.1f", table->ColumnsTotalWidth, table->ColumnsAutoFitWidth);
+                ImGui::BulletText("HoveredColumnBody: %d, HoveredColumnBorder: %d", table->HoveredColumnBody, table->HoveredColumnBorder);
+                ImGui::BulletText("ResizedColumn: %d, ReorderColumn: %d, HeldHeaderColumn: %d", table->ResizedColumn, table->ReorderColumn, table->HeldHeaderColumn);
                 for (int n = 0; n < table->ColumnsCount; n++)
                 {
                     const ImGuiTableColumn* column = &table->Columns[n];
