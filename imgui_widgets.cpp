@@ -9956,6 +9956,7 @@ void    ImGui::TableHeader(const char* label)
     const bool selected = (table->IsContextPopupOpen && table->ContextPopupColumn == column_n && table->InstanceInteracted == table->InstanceCurrent);
     ImGuiID id = window->GetID(label);
     ImRect bb(cell_r.Min.x, cell_r.Min.y, cell_r.Max.x, ImMax(cell_r.Max.y, cell_r.Min.y + label_height + g.Style.CellPadding.y * 2.0f));
+    ItemSize(ImVec2(label_size.x, label_height));
     if (!ItemAdd(bb, id))
         return;
 
