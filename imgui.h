@@ -478,6 +478,10 @@ namespace ImGui
     IMGUI_API bool          DragFloat2(const char* label, float v[2], float v_speed = 1.0f, float v_min = 0.0f, float v_max = 0.0f, const char* format = "%.3f", float power = 1.0f);
     IMGUI_API bool          DragFloat3(const char* label, float v[3], float v_speed = 1.0f, float v_min = 0.0f, float v_max = 0.0f, const char* format = "%.3f", float power = 1.0f);
     IMGUI_API bool          DragFloat4(const char* label, float v[4], float v_speed = 1.0f, float v_min = 0.0f, float v_max = 0.0f, const char* format = "%.3f", float power = 1.0f);
+    IMGUI_API bool          DragAngle(const char* label, float* v_rad, float v_speed = 0.1f, float v_degrees_min = -360.0f, float v_degrees_max = +360.0f, const char* format = "%.0f deg");
+    IMGUI_API bool          DragAngle2(const char* label, float v_rad[2], float v_speed = 0.1f, float v_degrees_min = -360.0f, float v_degrees_max = +360.0f, const char* format = "%.0f deg");
+    IMGUI_API bool          DragAngle3(const char* label, float v_rad[3], float v_speed = 0.1f, float v_degrees_min = -360.0f, float v_degrees_max = +360.0f, const char* format = "%.0f deg");
+    IMGUI_API bool          DragAngle4(const char* label, float v_rad[4], float v_speed = 0.1f, float v_degrees_min = -360.0f, float v_degrees_max = +360.0f, const char* format = "%.0f deg");
     IMGUI_API bool          DragFloatRange2(const char* label, float* v_current_min, float* v_current_max, float v_speed = 1.0f, float v_min = 0.0f, float v_max = 0.0f, const char* format = "%.3f", const char* format_max = NULL, float power = 1.0f);
     IMGUI_API bool          DragInt(const char* label, int* v, float v_speed = 1.0f, int v_min = 0, int v_max = 0, const char* format = "%d");                                       // If v_min >= v_max we have no bound
     IMGUI_API bool          DragInt2(const char* label, int v[2], float v_speed = 1.0f, int v_min = 0, int v_max = 0, const char* format = "%d");
@@ -495,6 +499,9 @@ namespace ImGui
     IMGUI_API bool          SliderFloat3(const char* label, float v[3], float v_min, float v_max, const char* format = "%.3f", float power = 1.0f);
     IMGUI_API bool          SliderFloat4(const char* label, float v[4], float v_min, float v_max, const char* format = "%.3f", float power = 1.0f);
     IMGUI_API bool          SliderAngle(const char* label, float* v_rad, float v_degrees_min = -360.0f, float v_degrees_max = +360.0f, const char* format = "%.0f deg");
+    IMGUI_API bool          SliderAngle2(const char* label, float v_rad[2], float v_degrees_min = -360.0f, float v_degrees_max = +360.0f, const char* format = "%.0f deg");
+    IMGUI_API bool          SliderAngle3(const char* label, float v_rad[3], float v_degrees_min = -360.0f, float v_degrees_max = +360.0f, const char* format = "%.0f deg");
+    IMGUI_API bool          SliderAngle4(const char* label, float v_rad[4], float v_degrees_min = -360.0f, float v_degrees_max = +360.0f, const char* format = "%.0f deg");
     IMGUI_API bool          SliderInt(const char* label, int* v, int v_min, int v_max, const char* format = "%d");
     IMGUI_API bool          SliderInt2(const char* label, int v[2], int v_min, int v_max, const char* format = "%d");
     IMGUI_API bool          SliderInt3(const char* label, int v[3], int v_min, int v_max, const char* format = "%d");
@@ -1001,8 +1008,8 @@ enum ImGuiTabItemFlags_
 //   When ScrollX is on:
 //    - Table defaults to ImGuiTableFlags_SizingPolicyFixedX -> all Columns defaults to ImGuiTableColumnFlags_WidthFixed.
 //    - Columns sizing policy allowed: Fixed/Auto mostly! Using Stretch columns OFTEN DOES NOT MAKE SENSE if ScrollX is on, UNLESS you have specified a value for 'inner_width' in BeginTable().
-//    - Fixed Columns can be enlarged as needed. Table will show an horizontal scrollbar if needed. 
-//    - Stretch Columns, if any, will calculate their width using inner_width, assuming no scrolling (it really doesn't make sense to do otherwise). 
+//    - Fixed Columns can be enlarged as needed. Table will show an horizontal scrollbar if needed.
+//    - Stretch Columns, if any, will calculate their width using inner_width, assuming no scrolling (it really doesn't make sense to do otherwise).
 // - Mixing up columns with different sizing policy is possible BUT can be tricky and has some side-effects and restrictions.
 //   (their visible order and the scrolling state have subtle but necessary effects on how they can be manually resized).
 //   The typical use of mixing sizing policies is to have ScrollX disabled, one or two Stretch Column and many Fixed Columns.

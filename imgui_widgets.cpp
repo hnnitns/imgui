@@ -2270,6 +2270,71 @@ bool ImGui::DragFloat4(const char* label, float v[4], float v_speed, float v_min
     return DragScalarN(label, ImGuiDataType_Float, v, 4, v_speed, &v_min, &v_max, format, power);
 }
 
+bool ImGui::DragAngle(const char* label, float* v_rad, float v_speed, float v_degrees_min, float v_degrees_max, const char* format)
+{
+    if (format == NULL)
+        format = "%.0f deg";
+    float v_deg = (*v_rad) * 360.0f / (2 * IM_PI);
+    bool value_changed = DragFloat(label, &v_deg, v_speed, v_degrees_min, v_degrees_max, format, 1.0f);
+    *v_rad = v_deg * (2 * IM_PI) / 360.0f;
+    return value_changed;
+}
+
+bool ImGui::DragAngle2(const char* label, float v_rad[2], float v_speed, float v_degrees_min, float v_degrees_max, const char* format)
+{
+    if (format == NULL)
+        format = "%.0f deg";
+
+    float v_deg[2]{};
+
+    for (int i = 0; i < 2; i++)
+        v_deg[i] = (v_rad[i]) * 360.0f / (2 * IM_PI);
+
+    bool value_changed = DragFloat2(label, v_deg, v_speed, v_degrees_min, v_degrees_max, format, 1.0f);
+
+    for (int i = 0; i < 2; i++)
+        v_rad[i] = v_deg[i] * (2 * IM_PI) / 360.0f;
+
+    return value_changed;
+}
+
+bool ImGui::DragAngle3(const char* label, float v_rad[3], float v_speed, float v_degrees_min, float v_degrees_max, const char* format)
+{
+    if (format == NULL)
+        format = "%.0f deg";
+
+    float v_deg[3]{};
+
+    for (int i = 0; i < 3; i++)
+        v_deg[i] = (v_rad[i]) * 360.0f / (2 * IM_PI);
+
+    bool value_changed = DragFloat3(label, v_deg, v_speed, v_degrees_min, v_degrees_max, format, 1.0f);
+
+    for (int i = 0; i < 3; i++)
+        v_rad[i] = v_deg[i] * (2 * IM_PI) / 360.0f;
+
+    return value_changed;
+}
+
+bool ImGui::DragAngle4(const char* label, float v_rad[4], float v_speed, float v_degrees_min, float v_degrees_max, const char* format)
+{
+    if (format == NULL)
+        format = "%.0f deg";
+
+    float v_deg[4]{};
+
+    for (int i = 0; i < 4; i++)
+        v_deg[i] = (v_rad[i]) * 360.0f / (2 * IM_PI);
+
+    bool value_changed = DragFloat4(label, v_deg, v_speed, v_degrees_min, v_degrees_max, format, 1.0f);
+
+    for (int i = 0; i < 4; i++)
+        v_rad[i] = v_deg[i] * (2 * IM_PI) / 360.0f;
+
+    return value_changed;
+}
+
+
 bool ImGui::DragFloatRange2(const char* label, float* v_current_min, float* v_current_max, float v_speed, float v_min, float v_max, const char* format, const char* format_max, float power)
 {
     ImGuiWindow* window = GetCurrentWindow();
@@ -2753,6 +2818,60 @@ bool ImGui::SliderAngle(const char* label, float* v_rad, float v_degrees_min, fl
     float v_deg = (*v_rad) * 360.0f / (2 * IM_PI);
     bool value_changed = SliderFloat(label, &v_deg, v_degrees_min, v_degrees_max, format, 1.0f);
     *v_rad = v_deg * (2 * IM_PI) / 360.0f;
+    return value_changed;
+}
+
+bool ImGui::SliderAngle2(const char* label, float v_rad[2], float v_degrees_min, float v_degrees_max, const char* format)
+{
+    if (format == NULL)
+        format = "%.0f deg";
+
+    float v_deg[2]{};
+
+    for (int i = 0; i < 2; i++)
+        v_deg[i] = (v_rad[i]) * 360.0f / (2 * IM_PI);
+
+    bool value_changed = SliderFloat2(label, v_deg, v_degrees_min, v_degrees_max, format, 1.0f);
+
+    for (int i = 0; i < 2; i++)
+        v_rad[i] = v_deg[i] * (2 * IM_PI) / 360.0f;
+
+    return value_changed;
+}
+
+bool ImGui::SliderAngle3(const char* label, float v_rad[3], float v_degrees_min, float v_degrees_max, const char* format)
+{
+    if (format == NULL)
+        format = "%.0f deg";
+
+    float v_deg[3]{};
+
+    for (int i = 0; i < 3; i++)
+        v_deg[i] = (v_rad[i]) * 360.0f / (2 * IM_PI);
+
+    bool value_changed = SliderFloat3(label, v_deg, v_degrees_min, v_degrees_max, format, 1.0f);
+
+    for (int i = 0; i < 3; i++)
+        v_rad[i] = v_deg[i] * (2 * IM_PI) / 360.0f;
+
+    return value_changed;
+}
+
+bool ImGui::SliderAngle4(const char* label, float v_rad[4], float v_degrees_min, float v_degrees_max, const char* format)
+{
+    if (format == NULL)
+        format = "%.0f deg";
+
+    float v_deg[4]{};
+
+    for (int i = 0; i < 4; i++)
+        v_deg[i] = (v_rad[i]) * 360.0f / (2 * IM_PI);
+
+    bool value_changed = SliderFloat4(label, v_deg, v_degrees_min, v_degrees_max, format, 1.0f);
+
+    for (int i = 0; i < 4; i++)
+        v_rad[i] = v_deg[i] * (2 * IM_PI) / 360.0f;
+
     return value_changed;
 }
 
